@@ -1,5 +1,6 @@
 import os
 import sys
+from dotenv import load_dotenv
 from typing import Any, List, Tuple
 
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -11,13 +12,15 @@ from langchain.vectorstores import Pinecone
 from langchain.chains import ConversationalRetrievalChain
 import pinecone
 
-sys.path.insert(0, "/home/hanson/workspace/ai/langchain/documentation-helper")
+# sys.path.insert(0, "/home/hanson/workspace/ai/langchain/documentation-helper")
+
+load_dotenv()
 
 from consts import INDEX_NAME
 
 pinecone.init(
-    api_key=os.environ["PINECONE_API_KEY"],
-    environment=os.environ["PINECONE_ENVIRONMENT_REGION"],
+    api_key=os.environ.get("PINECONE_API_KEY"),
+    environment=os.environ.get("PINECONE_ENVIRONMENT_REGION"),
 )
 
 
