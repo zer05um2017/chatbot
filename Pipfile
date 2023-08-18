@@ -11,6 +11,7 @@ streamlit-chat = "*"
 pinecone-client = "*"
 bs4 = "*"
 python-dotenv = "*"
+tiktoken = "*"
 
 [dev-packages]
 
