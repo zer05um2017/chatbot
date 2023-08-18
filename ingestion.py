@@ -1,6 +1,7 @@
 import os
 from langchain.document_loaders import ReadTheDocsLoader
 from langchain.document_loaders.csv_loader import CSVLoader
+from langchain.document_loaders.text import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
@@ -18,7 +19,8 @@ def ingest_docs() -> None:
     # loader = ReadTheDocsLoader(path="langchain-docs/langchain.readthedocs.io/en/latest")
     # loader = ReadTheDocsLoader(path="medi/rtdocs/www.kahp.or.kr", encoding='utf-8', features="lxml") #, errors='ignore')
     
-    loader = CSVLoader(file_path="./health.csv", encoding="utf-8")
+    # loader = CSVLoader(file_path="./health.csv", encoding="utf-8")
+    loader =TextLoader(file_path="./data.txt", encoding="utf-8")
     
     raw_documents = loader.load()
     print(f"loaded {len(raw_documents) }documents")

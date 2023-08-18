@@ -25,7 +25,7 @@ def create_sources_string(source_urls: set[str]) -> str:
 
     for i, source in enumerate(sources_list):
         sources_string += f"{i+1}. {source}\n"
-
+    
     return sources_string
 
 
