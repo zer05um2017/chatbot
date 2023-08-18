@@ -25,12 +25,15 @@ pinecone.init(
 
 
 def run_llm(query: str, chat_history: List[dict[str, Any]] = []) -> Any:
-    # openai_api_key = os.environ["OPENAI_API_KEY"]
+    openai_api_key = "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"
+    
     embeddings = OpenAIEmbeddings(client=None)
+    embeddings.openai_api_key = openai_api_key
+    
     docsearch = Pinecone.from_existing_index(
         index_name=INDEX_NAME, embedding=embeddings
     )
-    chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-3.5-turbo")
+    chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-3.5-turbo", openai_api_key=openai_api_key)
 
     # qa = RetrievalQA.from_chain_type(
     #     llm=chat,
