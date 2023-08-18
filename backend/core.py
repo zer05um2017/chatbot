@@ -1,6 +1,6 @@
 import os
-import sys
-from dotenv import load_dotenv
+# import sys
+# from dotenv import load_dotenv
 from typing import Any, List, Tuple
 
 from langchain.embeddings.openai import OpenAIEmbeddings
@@ -14,7 +14,7 @@ import pinecone
 
 # sys.path.insert(0, "/home/hanson/workspace/ai/langchain/documentation-helper")
 
-load_dotenv()
+# load_dotenv()
 
 from consts import INDEX_NAME
 
@@ -24,13 +24,12 @@ pinecone.init(
 )
 
 def run_llm(query: str, chat_history: List[dict[str, Any]] = []) -> Any:
-    openai_api_key = "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"
-    embeddings = OpenAIEmbeddings(client=None, openai_api_key=openai_api_key)
+    embeddings = OpenAIEmbeddings(client=None)
 
     docsearch = Pinecone.from_existing_index(
         index_name=INDEX_NAME, embedding=embeddings
     )
-    chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-3.5-turbo", openai_api_key=openai_api_key)
+    chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-3.5-turbo")
 
     # qa = RetrievalQA.from_chain_type(
     #     llm=chat,
