@@ -20,7 +20,7 @@ def ingest_docs() -> None:
     # loader = ReadTheDocsLoader(path="medi/rtdocs/www.kahp.or.kr", encoding='utf-8', features="lxml") #, errors='ignore')
     
     # loader = CSVLoader(file_path="./health.csv", encoding="utf-8")
-    loader =TextLoader(file_path="./data.txt", encoding="utf-8")
+    loader =TextLoader(file_path="./data_biz.txt", encoding="utf-8")
     
     raw_documents = loader.load()
     print(f"loaded {len(raw_documents) }documents")

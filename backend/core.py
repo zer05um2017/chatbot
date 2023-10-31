@@ -10,7 +10,13 @@ from langchain import PromptTemplate
 from langchain.vectorstores import Pinecone
 from langchain.chains import ConversationalRetrievalChain
 
-from langchain.schema import HumanMessage, SystemMessage
+from langchain.schema import HumanMessage, SystemMessage, BaseMessage
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    HumanMessagePromptTemplate
+)
+
 from consts import INDEX_NAME
 
 load_dotenv()
@@ -37,6 +43,12 @@ def run_llm(query: str, chat_history: List[dict[str, Any]] = []) -> Any:
         index_name=INDEX_NAME, embedding=embeddings
     )
     chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-3.5-turbo")
+    # chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-4")
+    
+    _systemtemplate = """
+    
+    """
+    
 
     _template = """
     You are a health care consultant and your role is to answer customer inquiries in Korean language.
