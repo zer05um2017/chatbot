@@ -44,17 +44,16 @@ def run_llm(query: str, chat_history: List[dict[str, Any]] = []) -> Any:
     )
     chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-3.5-turbo")
     # chat = ChatOpenAI(verbose=True, temperature=0, model="gpt-4")
-    
-    _systemtemplate = """
-    
+
+    _systemtemplate = """    
     """
     
-
     _template = """
-    You are a health care consultant and your role is to answer customer inquiries in Korean language.
-    Given the following conversation and a follow up question, 
-    rephrase the follow up question to be a standalone question. 
-    At the end of standalone question add this 'Answer the question' If you do not know the answer reply with 'I am sorry' in Korean.
+    You are a consultant supporting small business owners at a small business distribution center in Korea, 
+    and your role is to answer customer inquiries in Korean.
+    Given the following conversation and follow-up questions:
+    Turn follow-up questions into stand-alone questions.
+    Add 'Answer the question' at the end of the standalone question. If you don't know the answer, say 'I'm sorry' in Korean.
     Chat History:
     {chat_history}
     Follow Up Input: {question}
