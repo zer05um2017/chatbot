@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_chat import message
 from backend.core import run_llm
 
-st.header("SBDC - Support ChatBot!")
+st.header("SBDC - ChatBot!")
 
 prompt = st.text_input("Prompt", placeholder="질문을 입력하세요..")
 
