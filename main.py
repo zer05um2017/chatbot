@@ -10,7 +10,7 @@ st.header("SBDC - ChatBot!")
 if 'input_value' not in st.session_state:
     st.session_state.input_value = 'input_value'
 
-prompt = st.text_input("Prompt", placeholder="질문을 입력하세요..", value="", key="input")
+prompt = st.text_input("Prompt", placeholder="질문을 상세히 입력해주세요..", value="", key="input")
 
 if "user_prompt_history" not in st.session_state:
     st.session_state["user_prompt_history"] = []
