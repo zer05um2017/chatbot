@@ -3,9 +3,14 @@ import streamlit as st
 from streamlit_chat import message
 from backend.core import run_llm
 
+st.set_page_config(page_title="SBDC", layout="wide")
+
 st.header("SBDC - ChatBot!")
 
-prompt = st.text_input("Prompt", placeholder="질문을 입력하세요..")
+if 'input_value' not in st.session_state:
+    st.session_state.input_value = 'input_value'
+
+prompt = st.text_input("Prompt", placeholder="질문을 입력하세요..", value="", key="input")
 
 if "user_prompt_history" not in st.session_state:
     st.session_state["user_prompt_history"] = []
@@ -53,9 +58,11 @@ if prompt:
         st.session_state["user_prompt_history"].append(prompt)
         st.session_state["chat_answers_history"].append(formatted_response)
         st.session_state["chat_history"].append((prompt, generated_response["answer"]))
+        st.session_state["input_value"] = ""
+        # st.experimental_rerun()
 
 # if st.session_state["chat_answers_history"]:
 if 'chat_answers_history' in st.session_state:
-    for user_query, generated_response in zip(st.session_state["user_prompt_history"], st.session_state["chat_answers_history"]):
-        message(user_query, is_user=True, seed=1)
-        message(generated_response, seed=2)
+    for i, (user_query, generated_response) in enumerate(zip(st.session_state["user_prompt_history"], st.session_state["chat_answers_history"])):
+        message(user_query, is_user=True, key=f"user_message_{i}", seed=1)
+        message(generated_response, key=f"bot_message_{i}", seed=2)
